@@ -30,7 +30,10 @@ class Cart(object):
 
         for item in cart.values():
             item['price'] = Decimal(item['price'])
-            item['total_price'] = item['price'] * item['quantity']
+            if item['percent'] == 'None':
+                item['total_price'] = item['price'] * item['quantity']
+            else:
+                item['total_price'] = (item['price'] * (1 - (Decimal(item['percent']) / 100))) * item['quantity']
             yield item
 
     def __len__(self):
@@ -46,7 +49,8 @@ class Cart(object):
         product_id = str(product.id)
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0,
-                                     'price': str(product.price)}
+                                     'price': str(product.price),
+                                     'percent': str(product.percent)}
         if update_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
@@ -63,7 +67,7 @@ class Cart(object):
         """
         product_id = str(product.id)
         if product_id in self.cart:
-            if self.cart[product_id]['quantity']>1:
+            if self.cart[product_id]['quantity'] > 1:
                 self.cart[product_id]['quantity'] -= 1
             else:
                 del self.cart[product_id]
@@ -71,7 +75,7 @@ class Cart(object):
 
     def get_total_price(self):
         # получаем общую стоимость
-        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+        return sum(item['total_price'] for item in self.cart.values())
 
     def clear(self):
         # очищаем корзину в сессии

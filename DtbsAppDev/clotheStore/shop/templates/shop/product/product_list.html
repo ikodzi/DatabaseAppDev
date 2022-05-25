@@ -1,5 +1,6 @@
 {% extends "shop/layout.html" %}
 {% load static %}
+{% block name %} Product Clothes {% endblock %}
 {% load mathfilters %}
 {% load humanize %}
 {% block title %} {% if category %}/{{ category.name }}{% else %}/Products{% endif %}
@@ -38,6 +39,7 @@
                                             <span class="price"><s class="text-body mr-2">{{ product.price|floatformat:"0"|intcomma }} ₸ </s>{{ product.price|mul:percent|floatformat:"0"|intcomma }} ₸</span>
                                         {% endwith %}
                                     {% endwith %}
+
                                 </div>
                                 <div class="sh-brand mt-2">
                                     <span class="brandName">Camel Rider Club</span>
@@ -65,7 +67,7 @@
                                     </div>
                                     <div class="shop card-body text-left">
                                         <div class="sh-price m-auto">
-                                            <span class="price text-body"> {{ product2.fall_winter  }} {{ product.price|floatformat:"0"|intcomma }}  ₸</span>
+                                            <span class="price text-body">{{ product.price|floatformat:"0"|intcomma }}  ₸</span>
                                         </div>
                                         <div class="sh-brand mt-2">
                                             <span class="brandName">Camel Rider Club</span>

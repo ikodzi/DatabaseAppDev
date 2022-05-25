@@ -1,5 +1,7 @@
 {% extends "shop/layout.html" %}
 {% load static %}
+{% block name %} Basket {% endblock %}
+{% load mathfilters %}
 {% load humanize %}
 {% block title %}
 /Shop basket
@@ -53,8 +55,22 @@
                <td>
                 {{ item.quantity }}
               </td>
-              <td class="num">{{ item.price }} ₸</td>
-              <td class="num">{{ item.total_price }} ₸</td>
+				{% if product.percent != None%}
+					{% with answer=100|sub:product.percent%}
+						{% with percent=answer|div:100%}
+							<td class="num">{{ item.price|mul:percent|floatformat:"0"|intcomma  }} ₸</td>
+                            <td class="num">{{ item.total_price|floatformat:"0"|intcomma  }} ₸</td>
+						{% endwith %}
+					{% endwith %}
+				{% else %}
+					{% with answer=100|sub:product.percent%}
+						{% with percent=answer|div:100%}
+                            <td class="num">{{ item.price|floatformat:"0"|intcomma  }} ₸</td>
+                            <td class="num">{{ item.total_price|floatformat:"0"|intcomma  }} ₸</td>
+						{% endwith %}
+					{% endwith %}
+				{% endif %}
+
             </tr>
             <line style="background-color: #e3e3e3; width=100%; height:1px;"></line>
             {% endwith %}
@@ -63,7 +79,7 @@
           <tfoot>
             <tr class="total">
               <td colspan="4"></td>
-              <td class="num">All: {{ cart.get_total_price }} ₸</td>
+              <td class="num">All: {{ cart.get_total_price|floatformat:"0"|intcomma  }} ₸</td>
             </tr>
           </tfoot>
         </table>

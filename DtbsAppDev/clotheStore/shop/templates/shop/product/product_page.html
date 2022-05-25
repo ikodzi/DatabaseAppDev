@@ -1,5 +1,6 @@
 {% load static %}
 {% load mathfilters %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,10 +56,10 @@
 			<div class="detail">
 				<h1><a class="text-body" style="text-decoration:none" href="{{ product.category.get_absolute_url }}">{{product.category }}</a></h1>
 				<h3>{{ product.name }}t</h3>
-				{% if percent %}
+				{% if product.percent != None%}
 					{% with answer=100|sub:product.percent%}
 						{% with percent=answer|div:100%}
-							<span class="price"><s class="text-body mr-2">{{ product.price }} ₸</s> ₸ {{ product.price|mul:percent }}</span>
+							<span class="price"><s class="text-body mr-2">{{ product.price|floatformat:"0"|intcomma }} ₸</s> {{ product.price|mul:percent|floatformat:"0"|intcomma }} ₸ </span>
 						{% endwith %}
 					{% endwith %}
 				{% else %}
