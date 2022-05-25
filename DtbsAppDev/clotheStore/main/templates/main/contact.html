@@ -1,0 +1,41 @@
+{% extends 'shop/layout.html' %}
+{% load static %}
+{% block name %} Call {% endblock %}
+{% block title %}
+/ request to calling back
+{% endblock %}
+{% block ccsjava %}
+    <link rel="stylesheet" href="{% static 'main/css/contact.css' %}">
+	<link rel="stylesheet" href="{% static 'main/css/jsPart.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main_body" style="background-image: url({% static 'main/img/reqback.png' %})">
+		<div class="mainpage d-flex justify-content-center align-items-center">
+		<div class="block2 d-flex flex-column align-items-center">
+			<h1 class="contacts">Request to Calling back</h1>
+            <form method="post" style="width:450px" class="d-flex flex-column align-items-center" >
+                {% csrf_token %}
+                {{ form.name_call }}<br>
+                {{ form.number }}<br>
+                {{ form.email_call }}<br>
+                {{ form.message }}<br>
+                <span>{{ error }}</span>
+                <button class="btn btn-info" type="submit">SEND</button>
+            </form>
+
+<!--			<input class="field1" placeholder="Name" type="text" name="Name">-->
+<!--			<input class="field" placeholder="Phone number" type="text" name=" Phone number">-->
+<!--			<input class="field" placeholder="Email" type="text" name="Email">-->
+<!--			<textarea class="textarea" placeholder="Message" type="text" name="Message "> Message </textarea>-->
+<!--			<button class="read">-->
+<!--				<a class="a_button" href="#">Send</a>-->
+<!--			</button>-->
+		</div>
+		<div class="block">
+			<img class="ml-5" src="{% static 'main/img/reqCall.png' %}" alt="">
+		</div>
+	</div>
+	</div>
+{% endblock %}
+

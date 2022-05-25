@@ -1,0 +1,20 @@
+{% extends "shop/layout.html" %}
+{% load static %}
+{% load mathfilters %}
+{% load humanize %}
+{% block title %} {% if category %}/{{ category.name }}{% else %}/Delete{% endif %}
+{% endblock %}
+{% block ccsjava %}
+<link rel="stylesheet" href="{% static 'main/css/sales.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/jsPart.css' %}">{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="form-group bg-white mt-3 text-center pb-3">
+    <form class ="mt-2" method="post">
+        {% csrf_token %}
+        <strong>Are you sure?</strong><br>
+        <button type="submit" class = "btn btn-success">Delete</button>
+    </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "shop/layout.html" %}
+{% load static %}
+{% load mathfilters %}
+{% load humanize %}
+{% block title %} {% if category %}/{{ category.name }}{% else %}/Products{% endif %}
+{% endblock %}
+{% block ccsjava %} <link rel="stylesheet" href="{% static 'main/css/sales.css' %}">
+	<link rel="stylesheet" href="{% static 'main/css/jsPart.css' %}">{% endblock %}
+{% block content %}
+    <div id="sidebar">
+        <h3>Category</h3>
+        <div class="hrLink d-flex justify-content-start align-items-center">
+            <button class="btn btn-outline-warning mr-2" {% if not category %}type="button" {% endif %}><a class="text-body" href="{% url 'shop:product_list' %}" style = "text-decoration:none">All</a></button>
+            {% for c in categories %}
+            <button class="btn btn-outline-warning mr-2" {% if category.slug == c.slug %}type="button" {% endif %}><a class="text-body" href="{{ c.get_absolute_url }}" style = "text-decoration:none">{{ c.name }}</a></button>
+            {% endfor %}
+        </div>
+    </div>
+    <h1 class="mt-2 text-center">{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
+        {% if user.is_authenticated and user.get_username == 'ziko' %}
+            <div class="col text-left "><a href="{% url 'shop:create' %} " style="color:green">Create Product</a></div>
+        {% endif %}
+        <div class="row" id="spring_s">
+            {% for product in products %}
+                {% if product.percent != None%}
+                    <div class="col-md-4">
+                       <div class="shop card rounded-start mb-4">
+                            <div class="shop card-image">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img class="img-fluid" src="{% if product.image %}{{ product.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}">
+                                    <span class="percent text-center">-{{ product.percent|floatformat:"0"|intcomma }}%</span>
+                                </a>
+                            </div>
+                            <div class="shop card-body text-left">
+                                <div class="sh-price m-auto">
+                                    {% with answer=100|sub:product.percent%}
+                                        {% with percent=answer|div:100%}
+                                            <span class="price"><s class="text-body mr-2">{{ product.price|floatformat:"0"|intcomma }} ₸ </s>{{ product.price|mul:percent|floatformat:"0"|intcomma }} ₸</span>
+                                        {% endwith %}
+                                    {% endwith %}
+                                </div>
+                                <div class="sh-brand mt-2">
+                                    <span class="brandName">Camel Rider Club</span>
+                                </div>
+                                <div class="sh-type m-auto">
+                                    <span class="tsh"><a class="text-body" style = "text-decoration:none" href="{{ product.get_absolute_url }}">{{ product.name }}</a></span>
+                                </div>
+                                <div class="sh-but mt-2">
+                                    <a href = "{{ product.get_absolute_url }}"><button type="button" class="btn btn-danger">Buy</button></a>
+                                 {% if user.is_authenticated and user.get_username == 'ziko' %}
+                                    <a href="{% url 'shop:update' product.pk %}"><button type="button" class="btn btn-success ml-1" >Update</button></a>
+                                    <a href="{% url 'shop:delete' product.pk %}"><button type="button" class="btn btn-success ">Delete</button></a>
+                                 {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        {% elif product.percent == None %}
+                        <div class="col-md-4">
+                               <div class="shop card rounded-start mb-4">
+                                    <div class="shop card-image">
+                                        <a href="{{ product.get_absolute_url }}">
+                                            <img class="img-fluid" src="{% if product.image %}{{ product.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}">
+                                        </a>
+                                    </div>
+                                    <div class="shop card-body text-left">
+                                        <div class="sh-price m-auto">
+                                            <span class="price text-body"> {{ product2.fall_winter  }} {{ product.price|floatformat:"0"|intcomma }}  ₸</span>
+                                        </div>
+                                        <div class="sh-brand mt-2">
+                                            <span class="brandName">Camel Rider Club</span>
+                                        </div>
+                                        <div class="sh-type m-auto">
+                                            <span class="tsh"><a class="text-body" style = "text-decoration:none" href="{{ product.get_absolute_url }}">{{ product.name }}</a></span>
+                                        </div>
+                                        <div class="sh-but mt-2">
+                                            <a href = "{{ product.get_absolute_url }}"><button type="button" class="btn btn-danger">Buy</button></a>
+                                        {% if user.is_authenticated and user.get_username == 'ziko' %}
+                                            <a href="{% url 'shop:update' product.pk %}"><button type="button" class="btn btn-success ml-1" >Update</button></a>
+                                            <a href="{% url 'shop:delete' product.pk %}"><button type="button" class="btn btn-success ">Delete</button></a>
+                                        {% endif %}
+                                        </div>
+
+                                    </div>
+                                </div>
+                                </div>
+                        {% endif %}
+            {% endfor %}
+            </div>
+{% endblock %}

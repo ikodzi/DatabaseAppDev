@@ -1,0 +1,442 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CamelRiderClub</title>
+	<link rel="stylesheet" href="{% static 'main/css/home.css' %}">
+	<link rel="stylesheet" href="{% static 'main/css/jsPart.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800|Orbitron:400,500,600,700,800,900&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/5d6650f6c1.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600&family=PT+Serif&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200;300;400;500&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200;300;400;500&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" href="{% static 'main/img/Logo7.png' %}">
+</head>
+<body>
+	<header class="header">
+		<div class="gradient">
+			<div class="container">
+				<div class="header-top">
+					<div class="ManWoman">
+						<a href="#">Men</a>
+						<a href="#" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Contacts</a>
+					<a href="#" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">About us</a>
+					</div>
+					<div class="logo">
+						<a href="{% url 'home' %}"><img src="{% static 'main/img/Logo7.png' %} "></a>
+					</div>
+					{% if user.is_authenticated %}
+						<div class="entrance_fa">
+							<i class="fa fa-user" aria-hidden="true"></i>
+							<p>{{ user.get_username }}</p>
+							<a href="{% url 'logout'%}?next={{request.path}}">&ensp; Logout</a>
+						</div>
+				   		{% else %}
+							 <div class="Entrance">
+								<div class="entrance_fa">
+									<i class="fa fa-user" aria-hidden="true"></i>
+									<p>Account</p>
+								</div>
+								<div class="verification">
+									<a href="{% url 'login' %}">Sign In</a>
+									&ensp;
+									<a href="{% url 'create' %}">Create</a>
+								</div>
+							</div>
+					{% endif %}
+
+				</div>
+				<div class="header-sec">
+					<div class="navbar">
+					  <div class="dropdown">
+					    <button class="dropbtn">Clothes
+					      <i class="fa fa-caret-down"></i>
+					    </button>
+					    <div class="dropdown-content">
+					      <div class="header2">
+					        <h3>Categories</h3>
+					      </div>
+					      <div class="row">
+					        <div class="column">
+					        	<a href="#" onclick="openSearch('tsh')" style="width:auto;">T-shirt</a>
+					        	<a href="#" onclick="openSearch('hd')" style="width:auto;">Hoodie</a>									
+					          <a href="#" onclick="openSearch('lsh')" style="width:auto;">Long Sleeve Shirt</a>
+					        </div>
+					        <div class="column">
+					        	<a href="#" onclick="openSearch('jck')" style="width:auto;">Jacket</a>
+					        	<a href="#" onclick="openSearch('unsh')" style="width:auto;">Undershirt</a>									
+					          <a href="#" onclick="openSearch('sp')" style="width:auto;">Sports</a>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+  					  <div class="dropdown">
+					    <button class="dropbtn">Shoes
+					      <i class="fa fa-caret-down"></i>
+					    </button>
+					    <div class="dropdown-content">
+					      <div class="header2">
+					        <h3>Categories</h3>
+					      </div>
+					      <div class="row">
+					        <div class="column">
+					          <a href="#">Boots</a>
+					          <a href="#">Slippers</a>
+					          <a href="#">Sneakers</a>
+					        </div>
+					        <div class="column">
+					          <a href="#">Snickers</a>
+					          <a href="#">Moccasins</a>
+					          <a href="#">Sandals</a>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+					  <div class="dropdown">
+					    <button class="dropbtn">Accessories
+					      <i class="fa fa-caret-down"></i>
+					    </button>
+					    <div class="dropdown-content">
+					      <div class="header2">
+					        <h3>Categories</h3>
+					      </div>
+					      <div class="row">
+					        <div class="column">
+					          <a href="#">Ties and Cufflinks</a>
+					          <a href="#">Hats</a>
+					          <a href="#">Wallets and business card holders</a>
+					        </div>
+					        <div class="column">
+					          <a href="#">Glasses</a>
+					          <a href="#">Gloves</a>
+					          <a href="#">Backpack</a>
+					        </div>
+					      </div>
+					    </div>
+					  </div>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="body_one">
+		<div class="body-main">
+			<div class="carousel">
+				<div class="pic-ctn">
+					<img src="{% static 'main/img/crs4.jpg' %}" alt="" class="pic" >
+					<img src="{% static 'main/img/crs5.jpg' %}" alt="" class="pic" >
+					<img src="{% static 'main/img/crs6.jpg' %}" alt="" class="pic">
+				</div>
+			</div>
+			<h1>Select the section you are interested in</h1>
+			<div class="firstrow">
+				<div class="block">
+					<div class="photo_block" style="background-image: url({% static 'main/img/fw_back.jpg' %})">
+						<div class="photo_foot">
+							<a href="{% url 'shop:product_list'  %}">clothes</a>
+						</div>
+					</div>
+				</div>
+				<div class="block">
+					<div class="photo_block4" style="background-image: url({% static 'main/img/stores_back.png' %})" >
+						<div class="photo_foot">
+							<a href="{% url 'store' %}">stores</a>
+						</div>
+					</div>
+				</div>
+				<div class="block">
+					<div class="photo_block5" style="	background-image: url({% static 'main/img/request.png' %})" >
+						<div class="photo_foot">
+							<a href="{% url 'call' %}">Request Call Back</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+	<div id="id01" class="modal">
+	<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+	<h1>Contacts Information</h1>
+	<div class="contacts">
+	<div class="info">
+				<div class="info_1">
+					<i class="fa fa-mobile" aria-hidden="true"></i>
+					<p>Call: 877798255223</p>	
+				</div>
+				<div class="info_1">
+					<i class="fa fa-envelope-o" aria-hidden="true"></i>
+					<p>Email: crc@mail.com</p>
+				</div>
+				<div class="info_1">
+					<i class="fa fa-clock-o" aria-hidden="true"></i>
+					<p>Timing: Without Holiday</p>
+				</div>
+				<div class="info_1">
+					<i class="fa fa-location-arrow" aria-hidden="true"></i>	
+					<p>Address: Manas 8st,Zhandosov street,Almaty c, Kazakhstan</p>
+				</div>
+			</div>
+			<div class="geo">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11627.105809385639!2d76.9097448!3d43.2351464!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2426740f56437e63!2z0JzQtdC20LTRg9C90LDRgNC-0LTQvdGL0Lkg0YPQvdC40LLQtdGA0YHQuNGC0LXRgiDQuNC90YTQvtGA0LzQsNGG0LjQvtC90L3Ri9GFINGC0LXRhdC90L7Qu9C-0LPQuNC5!5e0!3m2!1sru!2skz!4v1588566180575!5m2!1sru!2skz" width="500" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+			</div>
+		</div>
+	</div>
+	<div id="id02" class="modal">
+	<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+		<div class="about_us">
+				<h1>About us</h1>
+		<div class="about_us_cont1">
+			<h4>Huge selection</h4>
+			<p>Internet-shop CamelRiderClub.kz - the largest in Kazakhstan catalog of fashionable men's clothes, shoes, accessories, perfumes and cosmetics, as well as sports goods.</p>
+			<p>Here you can pick up a basic men's closet for every day and decorate it with spectacular designer accessories.</p>
+		</div>
+		<div class="about_us_cont1">
+			<h4>Delivery with trying on</h4>
+			<p>All the goods from the catalog of CamelRiderClub.kz you can try on before buying. Courier brings desirable models and sizes for choice, the buyer can pay for the goods after trying them on.</p>
+		</div>
+		<div class="about_us_cont1">
+			<h4>Payment and return</h4>
+			<p>All the goods from the catalog CamelRiderClub.kz can be ordered without pre-payment. Upon delivery of the goods courier pay by credit card through mobile terminal 	or take cash from the buyer.</p>
+		</div>
+		<div class="photo">
+			<img src="{% static 'main/img/bck2.jpg' %}" alt="">
+			<img src="{% static 'main/img/bck3.jpg' %}" alt="">
+			<img src="{% static 'main/img/team.jpg' %}" alt="">
+		</div>						
+	</div>	
+</div>	
+	<div id="tsh" class="modal2">
+	<span onclick="closeSearch('tsh')" class="close" title="Close Modal">&times;</span>
+	<a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+	<div class="slideshow-container">
+		<div class="mySlides1">
+		  <div class="numbertext">1 / 5</div>
+		  <img src="{% static 'main/img/tsh-black.jpg' %}" >
+		</div>
+		<div class="mySlides1">
+		  <div class="numbertext">2 / 5</div>
+		  <img src="{% static 'main/img/slide_tsh2.jpg' %}">
+
+		</div>
+
+		<div class="mySlides1">
+		  <div class="numbertext">3 / 5</div>
+		  <img src="{% static 'main/img/slide_tsh3.jpg' %}">
+
+		</div>
+		<div class="mySlides1">
+		  <div class="numbertext">4 /5 </div>
+		  <img src="{% static 'main/img/slide_tsh4.jpg' %}">
+
+		</div>
+		<div class="mySlides1">
+		  <div class="numbertext">5 /5 </div>
+		  <img src="{% static 'main/img/slide_tsh5.jpg' %}">
+
+		</div>
+		</div>
+		<a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+		<br>
+	</div>
+		<div id="hd" class="modal2">
+	<span onclick="closeSearch('hd')" class="close" title="Close Modal">&times;</span>
+	<a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
+	<div class="slideshow-container">
+		<div class="mySlides2">
+		  <div class="numbertext">1 / 5</div>
+		  <img src="{% static 'main/img/slide_hd.jpg' %}" >
+
+		</div>
+
+		<div class="mySlides2">
+		  <div class="numbertext">2 / 5</div>
+		  <img src="{% static 'main/img/slide_hd2.jpg' %}">
+
+		</div>
+
+		<div class="mySlides2">
+		  <div class="numbertext">3 / 5</div>
+		  <img src="{% static 'main/img/slide_hd3.jpg' %}">
+
+		</div>
+		<div class="mySlides2">
+		  <div class="numbertext">4 /5 </div>
+		  <img src="{% static 'main/img/slide_hd4.jpg' %}">
+
+		</div>
+		<div class="mySlides2">
+		  <div class="numbertext">5 /5 </div>
+		  <img src="{% static 'main/img/slide_hd5.jpg' %}">
+
+		</div>
+		</div>
+		<a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
+		<br>
+	</div>
+	<div id="lsh" class="modal2">
+	<span onclick="closeSearch('lsh')" class="close" title="Close Modal">&times;</span>
+	<a class="prev" onclick="plusSlides(-1, 2)">&#10094;</a>
+	<div class="slideshow-container">
+		<div class="mySlides3">
+		  <div class="numbertext">1 / 5</div>
+		  <img src="{% static 'main/img/lsh_1.jpg' %}" >
+
+		</div>
+
+		<div class="mySlides3">
+		  <div class="numbertext">2 / 5</div>
+		  <img src="{% static 'main/img/lsh2.jpg' %}">
+
+		</div>
+
+		<div class="mySlides3">
+		  <div class="numbertext">3 / 5</div>
+		  <img src="{% static 'main/img/lsh3.jpeg' %}">
+
+		</div>
+		<div class="mySlides3">
+		  <div class="numbertext">4 /5 </div>
+		  <img src="{% static 'main/img/lsh4.jpeg' %}">
+
+		</div>
+		<div class="mySlides3">
+		  <div class="numbertext">5 /5 </div>
+		  <img src="{% static 'main/img/lsh5.jpeg' %}">
+
+		</div>
+		</div>
+		<a class="next" onclick="plusSlides(1, 2)">&#10095;</a>
+		<br>
+	</div>
+		<div id="jck" class="modal2">
+	<span onclick="closeSearch('jck')" class="close" title="Close Modal">&times;</span>
+	<a class="prev" onclick="plusSlides(-1, 3)">&#10094;</a>
+	<div class="slideshow-container">
+		<div class="mySlides4">
+		  <div class="numbertext">1 / 5</div>
+		  <img src="{% static 'main/img/jck1.jpg' %}" >
+
+		</div>
+
+		<div class="mySlides4">
+		  <div class="numbertext">2 / 5</div>
+		  <img src="{% static 'main/img/jck2.jpg' %}">
+
+		</div>
+
+		<div class="mySlides4">
+		  <div class="numbertext">3 / 5</div>
+		  <img src="{% static 'main/img/jck3.jpg' %}">
+
+		</div>
+		<div class="mySlides4">
+		  <div class="numbertext">4 /5 </div>
+		  <img src="{% static 'main/img/jck4.jpg' %}">
+
+		</div>
+		<div class="mySlides4">
+		  <div class="numbertext">5 /5 </div>
+		  <img src="{% static 'main/img/jck5.jpg' %}">
+
+		</div>
+		</div>
+		<a class="next" onclick="plusSlides(1, 3)">&#10095;</a>
+		<br>
+	</div>
+	<div id="unsh" class="modal2">
+	<span onclick="closeSearch('unsh')" class="close" title="Close Modal">&times;</span>
+	<a class="prev" onclick="plusSlides(-1, 4)">&#10094;</a>
+	<div class="slideshow-container">
+		<div class="mySlides5">
+		  <div class="numbertext">1 / 5</div>
+		  <img src="{% static 'main/img/unsh1.jpg' %}" >
+
+		</div>
+
+		<div class="mySlides5">
+		  <div class="numbertext">2 / 5</div>
+		  <img src="{% static 'main/img/unsh2.jpg' %}">
+
+		</div>
+
+		<div class="mySlides5">
+		  <div class="numbertext">3 / 5</div>
+		  <img src="{% static 'main/img/unsh3.jpeg' %}">
+
+		</div>
+		<div class="mySlides5">
+		  <div class="numbertext">4 /5 </div>
+		  <img src="{% static 'main/img/unsh4.jpg' %}">
+
+		</div>
+		<div class="mySlides5">
+		  <div class="numbertext">5 /5 </div>
+		  <img src="{% static 'main/img/unsh5.jpg' %}">
+
+		</div>
+		</div>
+		<a class="next" onclick="plusSlides(1, 4)">&#10095;</a>
+		<br>
+	</div>
+	<div id="sp" class="modal2">
+	<span onclick="closeSearch('sp')" class="close" title="Close Modal">&times;</span>
+	<a class="prev" onclick="plusSlides(-1, 5)">&#10094;</a>
+	<div class="slideshow-container">
+		<div class="mySlides6">
+		  <div class="numbertext">1 / 5</div>
+		  <img src="{% static 'main/img/sp1.jpg' %}" >
+
+		</div>
+
+		<div class="mySlides6">
+		  <div class="numbertext">2 / 5</div>
+		  <img src="{% static 'main/img/sp2.jpg' %}">
+
+		</div>
+
+		<div class="mySlides6">
+		  <div class="numbertext">3 / 5</div>
+		  <img src="{% static 'main/img/sp3.jpg' %}">
+
+		</div>
+		<div class="mySlides6">
+		  <div class="numbertext">4 /5 </div>
+		  <img src="{% static 'main/img/sp4.jpg' %}">
+
+		</div>
+		<div class="mySlides6">
+		  <div class="numbertext">5 /5 </div>
+		  <img src="{% static 'main/img/sp5.jpg' %}">
+
+		</div>
+		</div>
+		<a class="next" onclick="plusSlides(1, 5)">&#10095;</a>
+		<br>										
+	</div>
+	<footer class="footer">
+		<div class="center">
+			<p class="p_footer">Find us on social media</p>
+			<a href="#">
+				<i class="fa fa-facebook" aria-hidden="true"></i>
+			</a>
+			<a href="#">
+				<i class="fa fa-twitter" aria-hidden="true"></i>
+			</a>
+			<a href="#">
+				<i class="fa fa-instagram" aria-hidden="true"></i>
+			</a>
+			<a href="#">
+				<i class="fa fa-google-plus" aria-hidden="true"></i>
+			</a>
+		</div>			
+	</footer>
+<script src="{% static 'main/js/example.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+a{
+	font-family: 'PT Serif', serif;	
+	font-size: 22px;
+	font-weight: 400;
+	text-decoration: none;
+  color: grey;
+}
+p{
+	color:white;
+}
+.hrLink a:hover, .verification a:hover{
+	text-decoration: underline #c19a6b;
+}
+.logo img{
+	margin-left: 25%;
+	width: 30%;
+}
+.logo{
+	width: 682px;
+}
+.entrance_fa i{	
+	color: #c19a6b;
+}
+.entrance_fa p{
+	margin-left: 10px;
+	font-size: 22px;
+	font-family: 'PT Serif', serif;	
+	font-weight: 400;
+	color: black;
+}
+.footer, .gradient{
+	width: 100%;
+	background-color: #ECE7DC;
+}
+p.navigation{
+  font-family: 'Gemunu Libre', sans-serif;
+  font-weight: 300;
+  text-align:  center;
+  color: grey;
+  font-size: 24px;
+}
+.navigation a{
+    font-family: 'Gemunu Libre', sans-serif;
+  font-weight: 300;
+  text-align:  center;
+  color: grey;
+  font-size: 24px;
+}
+.ft a:hover{
+	text-decoration: none;
+}
+.ft i{
+	margin-left: 5px;
+	font-family: Dosis;
+	font-size: 16px;
+	font-weight: 400;
+	color: black;
+}
+.footer i:hover{
+  color: orange;
+}
+.navigation a:hover{
+  text-decoration: none;
+  color: black;
+}
+.price{
+	font-weight: 700;
+	color: black;
+}
+.tsh{
+	color: black;
+}
+#spring_s {
+    margin: 30px 0 30px 0;
+   
+}
+#spring_s .card:hover {
+            background: #fff;
+            box-shadow: 12px 15px 20px 0px rgba(0,0,0,0.5);
+            border-radius: 5px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+}
+.percent{
+  position: absolute;
+  left: -1px;
+  background: #32312f;
+  color: #fff;      
+  font-size: 14px;      
+  width: 80px;
+  height: 25px;
+}
+.contacts{
+	margin-top: 50px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: white;
+	max-width: 1600px;
+}

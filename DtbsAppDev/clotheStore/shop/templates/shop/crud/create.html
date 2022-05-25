@@ -1,0 +1,22 @@
+{% extends "shop/layout.html" %}
+{% load static %}
+{% load mathfilters %}
+{% load humanize %}
+{% block title %} {% if category %}/{{ category.name }}{% else %}/Create{% endif %}
+{% endblock %}
+{% block ccsjava %}
+<link rel="stylesheet" href="{% static 'main/css/sales.css' %}">
+<link rel="stylesheet" href="{% static 'main/css/jsPart.css' %}">{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="form-group bg-white mt-3 text-center pb-3  text-bold">
+    <form class ="mt-2  text-bold" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <br>
+        {{ form.as_p }}
+        {{ form.media }}
+        <button type="submit" class = "btn btn-success">Create</button>
+    </form>
+    </div>
+</div>
+{% endblock %}
